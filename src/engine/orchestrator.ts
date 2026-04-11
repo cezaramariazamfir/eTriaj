@@ -4,9 +4,16 @@ import { Level1Module } from './modules/level1/manager';
 
 const MODULES: ITriageModule[] = [Level1Module];
 
+function generateId(): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  return Date.now().toString(36) + Math.random().toString(36).slice(2);
+}
+
 function createSession(patientAge: number, persona: UserPersona): TriageSession {
   return {
-    sessionId: crypto.randomUUID(),
+    sessionId: generateId(),
     patientAge,
     persona,
     answers: {},

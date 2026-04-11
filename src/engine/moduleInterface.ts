@@ -7,8 +7,6 @@ export type ModuleResult =
 
 export interface ITriageModule {
   readonly id: string;
-  readonly name: string;
-  readonly isOfflineCapable: boolean;
   processAnswer(session: TriageSession, answer: 'YES' | 'NO'): ModuleResult;
   getActiveQuestions(session: TriageSession): TriageQuestion[];
 }

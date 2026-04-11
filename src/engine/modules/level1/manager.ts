@@ -4,7 +4,7 @@ import { LEVEL1_QUESTIONS } from './questions';
 
 function getActiveQuestions(session: TriageSession): TriageQuestion[] {
   return LEVEL1_QUESTIONS.filter(
-    (q) => q.isPediatricOnly !== true || session.patientAge < 18,
+    (q) => q.isPediatricOnly !== true || session.patientAge < 2,
   );
 }
 
@@ -42,8 +42,6 @@ function processAnswer(session: TriageSession, answer: 'YES' | 'NO'): ModuleResu
 
 export const Level1Module: ITriageModule = {
   id: 'level1',
-  name: 'ESI Level 1 — Resuscitation',
-  isOfflineCapable: true,
   processAnswer,
   getActiveQuestions,
 };
