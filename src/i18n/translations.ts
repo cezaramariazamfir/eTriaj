@@ -6,6 +6,8 @@ export interface UITranslations {
   appTagline: string;
   patientAge: string;
   agePlaceholder: string;
+  ageUnitYears: string;
+  ageUnitMonths: string;
   whoFillingOut: string;
   patient: string;
   caregiver: string;
@@ -44,6 +46,8 @@ export const UI: Record<Locale, UITranslations> = {
     appTagline: 'Quick emergency screening',
     patientAge: 'Patient age',
     agePlaceholder: 'Enter age',
+    ageUnitYears: 'years',
+    ageUnitMonths: 'months',
     whoFillingOut: 'Who is filling this out?',
     patient: 'Patient',
     caregiver: 'Caregiver',
@@ -76,6 +80,8 @@ export const UI: Record<Locale, UITranslations> = {
     appTagline: 'Evaluare rapidă a situației',
     patientAge: 'Vârsta pacientului',
     agePlaceholder: 'Introdu vârsta',
+    ageUnitYears: 'ani',
+    ageUnitMonths: 'luni',
     whoFillingOut: 'Cine completează?',
     patient: 'Pacient',
     caregiver: 'Aparținător',

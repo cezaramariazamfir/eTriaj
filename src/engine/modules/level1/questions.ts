@@ -36,7 +36,7 @@ export const LEVEL1_QUESTIONS: TriageQuestion[] = [
     id: 'L1_Q5_PENETRATING_TRAUMA',
     translations: {
       en: 'Is there penetrating trauma (stab/gunshot) that is bleeding heavily?',
-      ro: 'Există o plagă penetrantă (înjunghiere, împușcătură) lcare nu se oprește din sângerat?',
+      ro: 'Există o plagă penetrantă (înjunghiere, împușcătură) care nu se oprește din sângerat?',
     },
     triggerOnYes: true,
   },

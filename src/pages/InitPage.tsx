@@ -4,15 +4,20 @@ import type { UserPersona } from '../engine/types';
 import { useTriageContext } from '../context/TriageContext';
 import type { Locale } from '../i18n/translations';
 
+type AgeUnit = 'years' | 'months';
+
 export function InitPage() {
   const [age, setAge] = useState<string>('');
+  const [ageUnit, setAgeUnit] = useState<AgeUnit>('years');
   const [persona, setPersona] = useState<UserPersona>('PATIENT');
   const [submitted, setSubmitted] = useState(false);
   const { session, startSession, t, locale, setLocale } = useTriageContext();
   const navigate = useNavigate();
 
   const parsedAge = parseInt(age, 10);
-  const isValid = age !== '' && !isNaN(parsedAge) && parsedAge >= 0 && parsedAge <= 120;
+  const maxAge = ageUnit === 'years' ? 120 : 23;
+  const isValid = age !== '' && !isNaN(parsedAge) && parsedAge >= 0 && parsedAge <= maxAge;
+  const ageInYears = ageUnit === 'years' ? parsedAge : parsedAge / 12;
 
   useEffect(() => {
     if (submitted && session !== null) {
@@ -23,7 +28,7 @@ export function InitPage() {
 
   function handleSubmit() {
     if (!isValid) return;
-    startSession(parsedAge, persona);
+    startSession(ageInYears, persona);
     setSubmitted(true);
   }
 
@@ -65,16 +70,35 @@ export function InitPage() {
           <label className="text-sm font-semibold text-slate-700" htmlFor="age">
             {t.patientAge}
           </label>
-          <input
-            id="age"
-            type="number"
-            min={0}
-            max={120}
-            value={age}
-            onChange={(e) => { setAge(e.target.value); }}
-            placeholder={t.agePlaceholder}
-            className="w-full h-[56px] rounded-2xl border-2 border-slate-200 px-4 text-xl font-medium text-slate-900 outline-none focus:border-primary transition-colors bg-white"
-          />
+          <div className="flex gap-2">
+            <input
+              id="age"
+              type="number"
+              min={0}
+              max={maxAge}
+              value={age}
+              onChange={(e) => { setAge(e.target.value); }}
+              placeholder={t.agePlaceholder}
+              className="flex-1 h-[56px] rounded-2xl border-2 border-slate-200 px-4 text-xl font-medium text-slate-900 outline-none focus:border-primary transition-colors bg-white"
+            />
+            <div className="flex rounded-2xl border-2 border-slate-200 overflow-hidden">
+              {(['years', 'months'] as AgeUnit[]).map((unit) => (
+                <button
+                  key={unit}
+                  type="button"
+                  onClick={() => { setAgeUnit(unit); setAge(''); }}
+                  className={[
+                    'px-4 text-sm font-semibold transition-all duration-150',
+                    ageUnit === unit
+                      ? 'bg-primary text-white'
+                      : 'bg-white text-slate-500',
+                  ].join(' ')}
+                >
+                  {unit === 'years' ? t.ageUnitYears : t.ageUnitMonths}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col gap-2">
