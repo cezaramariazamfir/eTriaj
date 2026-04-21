@@ -1,4 +1,4 @@
-import type { TriageSession, ESILevel, TriageQuestion } from './types';
+import type { TriageSession, ESILevel, TriageQuestion, TriageAnswerValue } from './types';
 
 export type ModuleResult =
   | { status: 'LEVEL_ASSIGNED'; level: ESILevel; triggeredBy: string; updatedSession: TriageSession }
@@ -7,6 +7,6 @@ export type ModuleResult =
 
 export interface ITriageModule {
   readonly id: string;
-  processAnswer(session: TriageSession, answer: 'YES' | 'NO'): ModuleResult;
+  processAnswer(session: TriageSession, answer: TriageAnswerValue): ModuleResult;
   getActiveQuestions(session: TriageSession): TriageQuestion[];
 }

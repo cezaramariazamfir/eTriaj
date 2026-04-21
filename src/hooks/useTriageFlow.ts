@@ -1,5 +1,5 @@
 import { useReducer, useState } from 'react';
-import type { TriageSession, UserPersona, TriageQuestion } from '../engine/types';
+import type { TriageSession, UserPersona, TriageQuestion, TriageAnswerValue } from '../engine/types';
 import type { ModuleResult, ITriageModule } from '../engine/moduleInterface';
 import { Orchestrator } from '../engine/orchestrator';
 import type { Locale } from '../i18n/translations';
@@ -12,7 +12,7 @@ type State = {
 
 type Action =
   | { type: 'START'; patientAge: number; persona: UserPersona }
-  | { type: 'ANSWER'; value: 'YES' | 'NO' };
+  | { type: 'ANSWER'; value: TriageAnswerValue };
 
 const initialState: State = { session: null, result: null };
 
@@ -39,7 +39,7 @@ type TriageFlowReturn = {
   t: typeof UI['en'];
   setLocale: (locale: Locale) => void;
   startSession: (patientAge: number, persona: UserPersona) => void;
-  answer: (value: 'YES' | 'NO') => void;
+  answer: (value: TriageAnswerValue) => void;
 };
 
 export function useTriageFlow(): TriageFlowReturn {

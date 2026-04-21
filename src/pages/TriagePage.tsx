@@ -12,7 +12,8 @@ export function TriagePage() {
     if (result.status === 'LEVEL_ASSIGNED') {
       void navigate('/emergency');
     } else if (result.status === 'CONTINUE') {
-      void navigate('/result');
+      // All modules done — show the collected flags for the Rule Engine.
+      void navigate('/flags');
     }
   }, [result, navigate]);
 
@@ -20,13 +21,16 @@ export function TriagePage() {
     return null;
   }
 
+  const isLevel2 = session.currentModuleId === 'level2';
+  const title = isLevel2 ? t.level2Title : t.level1Title;
+  const subtitle = isLevel2 ? t.level2Subtitle : t.level1Subtitle;
   const totalQuestions = activeModule.getActiveQuestions(session).length;
 
   return (
     <div className="flex flex-col gap-6 pt-4">
       <div className="flex flex-col gap-1">
-        <h2 className="text-lg font-bold text-slate-900">{t.level1Title}</h2>
-        <p className="text-sm text-slate-500">{t.level1Subtitle}</p>
+        <h2 className="text-lg font-bold text-slate-900">{title}</h2>
+        <p className="text-sm text-slate-500">{subtitle}</p>
       </div>
 
       <QuestionCard

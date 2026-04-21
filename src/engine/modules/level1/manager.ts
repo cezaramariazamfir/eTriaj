@@ -1,4 +1,4 @@
-import type { TriageSession, TriageQuestion } from '../../types';
+import type { TriageSession, TriageQuestion, TriageAnswerValue } from '../../types';
 import type { ITriageModule, ModuleResult } from '../../moduleInterface';
 import { LEVEL1_QUESTIONS } from './questions';
 
@@ -8,7 +8,7 @@ function getActiveQuestions(session: TriageSession): TriageQuestion[] {
   );
 }
 
-function processAnswer(session: TriageSession, answer: 'YES' | 'NO'): ModuleResult {
+function processAnswer(session: TriageSession, answer: TriageAnswerValue): ModuleResult {
   const activeQuestions = getActiveQuestions(session);
   const currentQuestion = activeQuestions[session.currentQuestionIndex];
 
