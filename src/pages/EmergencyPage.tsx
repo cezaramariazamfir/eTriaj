@@ -6,8 +6,6 @@ import type { TriageFlags } from '../engine/types';
 
 const ALL_QUESTIONS = [...LEVEL1_QUESTIONS, ...LEVEL2_QUESTIONS];
 
-// Returns only the flags that differ from their default/null value — these are
-// the contextual risk factors collected before the trigger fired.
 function getActiveFlags(flags: TriageFlags): { key: string; value: string }[] {
   const result: { key: string; value: string }[] = [];
 
@@ -40,7 +38,6 @@ export function EmergencyPage() {
   const level = session?.result ?? 1;
   const isLevel1 = level === 1;
 
-  // Find the question whose ID matches session.triggeredBy and get its text.
   const triggeringQuestion = session?.triggeredBy
     ? ALL_QUESTIONS.find((q) => q.id === session.triggeredBy)
     : null;
@@ -48,7 +45,6 @@ export function EmergencyPage() {
     ? (triggeringQuestion.translations[locale] ?? triggeringQuestion.translations['en'])
     : null;
 
-  // For ESI 2, show any flags that were collected before the trigger question.
   const activeFlags = !isLevel1 && session?.flags ? getActiveFlags(session.flags) : [];
 
   function handleStartOver() {
@@ -70,7 +66,6 @@ export function EmergencyPage() {
         </p>
       </div>
 
-      {/* ── Primary action ── */}
       {isLevel1 ? (
         <a
           href="tel:112"
@@ -87,7 +82,6 @@ export function EmergencyPage() {
         </button>
       )}
 
-      {/* ── Triggering symptom ── */}
       {triggerText !== null && (
         <div className="bg-white/15 rounded-3xl p-5 flex flex-col gap-2">
           <p className="text-white/70 text-xs font-bold uppercase tracking-wider">
@@ -100,7 +94,6 @@ export function EmergencyPage() {
         </div>
       )}
 
-      {/* ── Risk flags collected before trigger (ESI 2 only) ── */}
       {activeFlags.length > 0 && (
         <div className="bg-white/15 rounded-3xl p-5 flex flex-col gap-3">
           <p className="text-white/70 text-xs font-bold uppercase tracking-wider">
@@ -119,7 +112,6 @@ export function EmergencyPage() {
         </div>
       )}
 
-      {/* ── What to tell operator (ESI 1 only) ── */}
       {isLevel1 && (
         <div className="bg-white/15 rounded-3xl p-5 flex flex-col gap-3">
           <p className="text-white font-semibold text-sm uppercase tracking-wide">

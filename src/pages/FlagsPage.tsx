@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { useTriageContext } from '../context/TriageContext';
 import type { TriageFlags } from '../engine/types';
 
-// ── Individual flag row ───────────────────────────────────────────────────────
 function FlagRow({
   name,
   value,
@@ -45,7 +44,6 @@ function FlagRow({
   );
 }
 
-// ── Build a human-readable value string for each flag ─────────────────────────
 function buildRows(flags: TriageFlags, t: {
   flagAge: string; flagSex: string; flagConfused: string; flagSuicidal: string;
   flagPainLevel: string; flagPainAlert: string; flagImmuno: string;
@@ -68,7 +66,6 @@ function buildRows(flags: TriageFlags, t: {
   ] as const;
 }
 
-// ── Main FlagsPage ────────────────────────────────────────────────────────────
 export function FlagsPage() {
   const { session, t } = useTriageContext();
   const navigate = useNavigate();
@@ -81,7 +78,6 @@ export function FlagsPage() {
   const { flags } = session;
   const rows = buildRows(flags, t);
 
-  // Raw JSON representation — this is exactly what the Rule Engine will receive.
   const jsonSnapshot = JSON.stringify(
     {
       AGE_VALUE: flags.AGE_VALUE,
@@ -100,7 +96,6 @@ export function FlagsPage() {
 
   return (
     <div className="flex flex-col gap-6 pt-4 pb-10">
-      {/* Header */}
       <div className="flex flex-col gap-1">
         <span className="text-xs font-bold uppercase tracking-widest text-green-600">
           Stage A ✓
@@ -109,12 +104,10 @@ export function FlagsPage() {
         <p className="text-sm text-slate-500">{t.flagsSubtitle}</p>
       </div>
 
-      {/* Status banner */}
       <div className="bg-green-50 border border-green-200 rounded-2xl px-5 py-4">
         <p className="text-green-800 text-sm font-semibold">{t.flagsStageAComplete}</p>
       </div>
 
-      {/* Flags table */}
       <div className="bg-white rounded-3xl shadow-sm border border-slate-100 px-5 py-2">
         <p className="text-xs font-bold uppercase tracking-wider text-slate-400 pt-3 pb-2">
           Tabel 3 — Flags output
@@ -130,7 +123,6 @@ export function FlagsPage() {
         ))}
       </div>
 
-      {/* JSON snapshot */}
       <div className="bg-slate-900 rounded-3xl p-5 overflow-x-auto">
         <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
           Rule Engine Input (JSON)
@@ -140,7 +132,6 @@ export function FlagsPage() {
         </pre>
       </div>
 
-      {/* Continue button (placeholder for Rule Engine / NLP module) */}
       <button
         onClick={() => { void navigate('/'); }}
         className="w-full min-h-[56px] rounded-2xl bg-primary text-white text-base font-bold active:scale-95 transition-all duration-150 flex items-center justify-between px-6"

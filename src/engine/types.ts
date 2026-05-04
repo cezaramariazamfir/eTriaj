@@ -17,7 +17,6 @@ export interface TriageQuestion {
   inputType?: QuestionInputType;
 }
 
-// All flags collected after Stage A (L1 + L2). Fed directly into Rule Engine.
 export interface TriageFlags {
   AGE_VALUE: number;
   SEX_BIO: 'M' | 'F' | null;

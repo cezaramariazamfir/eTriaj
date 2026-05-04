@@ -12,8 +12,7 @@ export function TriagePage() {
     if (result.status === 'LEVEL_ASSIGNED') {
       void navigate('/emergency');
     } else if (result.status === 'CONTINUE') {
-      // All modules done — show the collected flags for the Rule Engine.
-      void navigate('/flags');
+      void navigate('/symptoms');
     }
   }, [result, navigate]);
 

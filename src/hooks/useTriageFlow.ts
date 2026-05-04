@@ -1,5 +1,5 @@
 import { useReducer, useState } from 'react';
-import type { TriageSession, UserPersona, TriageQuestion, TriageAnswerValue } from '../engine/types';
+import type { TriageSession, TriageQuestion, TriageAnswerValue } from '../engine/types';
 import type { ModuleResult, ITriageModule } from '../engine/moduleInterface';
 import { Orchestrator } from '../engine/orchestrator';
 import type { Locale } from '../i18n/translations';
@@ -11,7 +11,7 @@ type State = {
 };
 
 type Action =
-  | { type: 'START'; patientAge: number; persona: UserPersona }
+  | { type: 'START'; patientAge: number }
   | { type: 'ANSWER'; value: TriageAnswerValue };
 
 const initialState: State = { session: null, result: null };
@@ -19,7 +19,7 @@ const initialState: State = { session: null, result: null };
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'START': {
-      const session = Orchestrator.createSession(action.patientAge, action.persona);
+      const session = Orchestrator.createSession(action.patientAge, 'PATIENT');
       return { session, result: null };
     }
     case 'ANSWER': {
@@ -38,7 +38,7 @@ type TriageFlowReturn = {
   locale: Locale;
   t: typeof UI['en'];
   setLocale: (locale: Locale) => void;
-  startSession: (patientAge: number, persona: UserPersona) => void;
+  startSession: (patientAge: number) => void;
   answer: (value: TriageAnswerValue) => void;
 };
 
@@ -63,7 +63,7 @@ export function useTriageFlow(): TriageFlowReturn {
     locale,
     t: UI[locale],
     setLocale,
-    startSession: (patientAge, persona) => { dispatch({ type: 'START', patientAge, persona }); },
+    startSession: (patientAge) => { dispatch({ type: 'START', patientAge }); },
     answer: (value) => { dispatch({ type: 'ANSWER', value }); },
   };
 }

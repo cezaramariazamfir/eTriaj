@@ -8,9 +8,6 @@ export interface UITranslations {
   agePlaceholder: string;
   ageUnitYears: string;
   ageUnitMonths: string;
-  whoFillingOut: string;
-  patient: string;
-  caregiver: string;
   startTriage: string;
   disclaimer: string;
   // TriagePage — Level 1
@@ -57,23 +54,33 @@ export interface UITranslations {
   // EmergencyPage — trigger info
   triggeredByLabel: string;
   contextFlagsLabel: string;
-  // FlagsPage
-  flagsTitle: string;
-  flagsSubtitle: string;
+  // FlagsPage / SymptomsPage — input
   flagsStageAComplete: string;
-  continueToRuleEngine: string;
-  flagAge: string;
-  flagSex: string;
-  flagConfused: string;
-  flagSuicidal: string;
-  flagPainLevel: string;
-  flagPainAlert: string;
-  flagImmuno: string;
-  flagBloodThinner: string;
-  flagObstetric: string;
-  flagTrue: string;
-  flagFalse: string;
-  flagNull: string;
+  symptomsTitle: string;
+  symptomsSubtitle: string;
+  symptomsPlaceholder: string;
+  symptomsSubmit: string;
+  symptomsAnalyzing: string;
+  // SymptomsPage — result
+  resultTitle: string;
+  resultLevel2Label: string;
+  resultLevel3Label: string;
+  resultLevel4Label: string;
+  resultLevel5Label: string;
+  resultTokensLabel: string;
+  resultNoTokens: string;
+  resultAlertsLabel: string;
+  resultFlagsLabel: string;
+  resultFlagAge: string;
+  resultFlagSex: string;
+  resultFlagPain: string;
+  resultFlagConfused: string;
+  resultFlagSuicidal: string;
+  resultFlagImmuno: string;
+  resultFlagBloodThinner: string;
+  resultFlagObstetric: string;
+  resultResourcesLabel: string;
+  resourceTypeLabels: Record<string, string>;
 }
 
 export const UI: Record<Locale, UITranslations> = {
@@ -84,9 +91,6 @@ export const UI: Record<Locale, UITranslations> = {
     agePlaceholder: 'Enter age',
     ageUnitYears: 'years',
     ageUnitMonths: 'months',
-    whoFillingOut: 'Who is filling this out?',
-    patient: 'Patient',
-    caregiver: 'Caregiver',
     startTriage: 'Start triage',
     disclaimer:
       'This tool does not replace professional medical advice. Always call emergency services in a life-threatening situation.',
@@ -124,22 +128,36 @@ export const UI: Record<Locale, UITranslations> = {
     module2Soon: 'No immediate life threat detected. Module 2 coming soon.',
     triggeredByLabel: 'Triggered by',
     contextFlagsLabel: 'Risk flags collected',
-    flagsTitle: 'Stage A complete',
-    flagsSubtitle: 'All collected flags — input for the Rule Engine',
     flagsStageAComplete: 'No immediate life threat detected in Stage A.',
-    continueToRuleEngine: 'Continue to Rule Engine',
-    flagAge: 'AGE_VALUE',
-    flagSex: 'SEX_BIO',
-    flagConfused: 'IS_CONFUSED',
-    flagSuicidal: 'IS_SUICIDAL',
-    flagPainLevel: 'PAIN_LEVEL',
-    flagPainAlert: 'PAIN_ALERT',
-    flagImmuno: 'IS_IMMUNO',
-    flagBloodThinner: 'IS_BLOOD_THINNER',
-    flagObstetric: 'IS_OBSTETRIC_RISK',
-    flagTrue: 'true',
-    flagFalse: 'false',
-    flagNull: 'null',
+    symptomsTitle: 'Describe your symptoms',
+    symptomsSubtitle: 'Write what you or the patient is experiencing, in your own words.',
+    symptomsPlaceholder: 'e.g. chest pain since this morning, shortness of breath, slight dizziness...',
+    symptomsSubmit: 'Analyze symptoms',
+    symptomsAnalyzing: 'Analyzing...',
+    resultTitle: 'Triage result',
+    resultLevel2Label: 'Go to emergency immediately',
+    resultLevel3Label: 'Moderate urgency — go to emergency',
+    resultLevel4Label: 'Less urgent — can wait',
+    resultLevel5Label: 'Non-urgent',
+    resultTokensLabel: 'Detected symptoms',
+    resultNoTokens: 'No specific symptoms matched the knowledge base.',
+    resultAlertsLabel: 'Risk alerts',
+    resultFlagsLabel: 'Risk factors collected (Stage A)',
+    resultFlagAge: 'Age',
+    resultFlagSex: 'Biological sex',
+    resultFlagPain: 'Pain level',
+    resultFlagConfused: 'Confusion',
+    resultFlagSuicidal: 'Suicidal risk',
+    resultFlagImmuno: 'Immunocompromised',
+    resultFlagBloodThinner: 'Blood thinners',
+    resultFlagObstetric: 'Obstetric risk',
+    resultResourcesLabel: 'Required resources',
+    resourceTypeLabels: {
+      labs: 'Blood tests', imaging: 'Imaging', ekg: 'EKG', rx: 'X-ray',
+      ct: 'CT scan', iv_fluids: 'IV fluids', urine: 'Urinalysis', echo: 'Ultrasound',
+      meds_iv: 'IV medication', consult: 'Specialist consult',
+      procedure: 'Procedure', suture: 'Suture', abx: 'IV antibiotics',
+    },
   },
   ro: {
     appSubtitle: 'Triaj de Urgență',
@@ -148,9 +166,6 @@ export const UI: Record<Locale, UITranslations> = {
     agePlaceholder: 'Introdu vârsta',
     ageUnitYears: 'ani',
     ageUnitMonths: 'luni',
-    whoFillingOut: 'Cine completează?',
-    patient: 'Pacient',
-    caregiver: 'Aparținător',
     startTriage: 'Începe triajul',
     disclaimer:
       'Acest instrument nu înlocuiește sfatul medical profesionist. Sunați la serviciile de urgență în orice situație cu risc vital.',
@@ -188,21 +203,35 @@ export const UI: Record<Locale, UITranslations> = {
     module2Soon: 'Nicio amenințare imediată detectată. Modulul 2 în curând.',
     triggeredByLabel: 'Declanșat de',
     contextFlagsLabel: 'Flag-uri de risc colectate',
-    flagsTitle: 'Etapa A completă',
-    flagsSubtitle: 'Toate flag-urile colectate — input pentru Rule Engine',
     flagsStageAComplete: 'Nicio amenințare vitală imediată detectată în Etapa A.',
-    continueToRuleEngine: 'Continuă spre Rule Engine',
-    flagAge: 'AGE_VALUE',
-    flagSex: 'SEX_BIO',
-    flagConfused: 'IS_CONFUSED',
-    flagSuicidal: 'IS_SUICIDAL',
-    flagPainLevel: 'PAIN_LEVEL',
-    flagPainAlert: 'PAIN_ALERT',
-    flagImmuno: 'IS_IMMUNO',
-    flagBloodThinner: 'IS_BLOOD_THINNER',
-    flagObstetric: 'IS_OBSTETRIC_RISK',
-    flagTrue: 'true',
-    flagFalse: 'false',
-    flagNull: 'null',
+    symptomsTitle: 'Descrieți simptomele',
+    symptomsSubtitle: 'Scrieți ce experimentați dumneavoastră sau pacientul, cu propriile cuvinte.',
+    symptomsPlaceholder: 'ex. durere în piept de dimineață, dificultăți de respirație, amețeală ușoară...',
+    symptomsSubmit: 'Analizează simptomele',
+    symptomsAnalyzing: 'Se analizează...',
+    resultTitle: 'Rezultat triaj',
+    resultLevel2Label: 'Mergeți imediat la urgențe',
+    resultLevel3Label: 'Urgență moderată — mergeți la urgențe',
+    resultLevel4Label: 'Mai puțin urgent — poate aștepta',
+    resultLevel5Label: 'Non-urgent',
+    resultTokensLabel: 'Simptome detectate',
+    resultNoTokens: 'Niciun simptom specific detectat în baza de cunoștințe.',
+    resultAlertsLabel: 'Alerte de risc',
+    resultFlagsLabel: 'Factori de risc colectați (Etapa A)',
+    resultFlagAge: 'Vârstă',
+    resultFlagSex: 'Sex biologic',
+    resultFlagPain: 'Nivel durere',
+    resultFlagConfused: 'Confuzie',
+    resultFlagSuicidal: 'Risc suicidar',
+    resultFlagImmuno: 'Imunocompromis',
+    resultFlagBloodThinner: 'Anticoagulante',
+    resultFlagObstetric: 'Risc obstetrical',
+    resultResourcesLabel: 'Resurse necesare',
+    resourceTypeLabels: {
+      labs: 'Analize sânge', imaging: 'Imagistică', ekg: 'EKG', rx: 'Radiografie',
+      ct: 'CT', iv_fluids: 'Fluide IV', urine: 'Sumar urină', echo: 'Ecografie',
+      meds_iv: 'Medicație IV', consult: 'Consult specialist',
+      procedure: 'Procedură', suture: 'Sutură', abx: 'Antibiotice IV',
+    },
   },
 };

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { UserPersona } from '../engine/types';
 import { useTriageContext } from '../context/TriageContext';
 import type { Locale } from '../i18n/translations';
 
@@ -9,7 +8,6 @@ type AgeUnit = 'years' | 'months';
 export function InitPage() {
   const [age, setAge] = useState<string>('');
   const [ageUnit, setAgeUnit] = useState<AgeUnit>('years');
-  const [persona, setPersona] = useState<UserPersona>('PATIENT');
   const [submitted, setSubmitted] = useState(false);
   const { session, startSession, t, locale, setLocale } = useTriageContext();
   const navigate = useNavigate();
@@ -28,7 +26,7 @@ export function InitPage() {
 
   function handleSubmit() {
     if (!isValid) return;
-    startSession(ageInYears, persona);
+    startSession(ageInYears);
     setSubmitted(true);
   }
 
@@ -98,28 +96,6 @@ export function InitPage() {
                 </button>
               ))}
             </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <span className="text-sm font-semibold text-slate-700">
-            {t.whoFillingOut}
-          </span>
-          <div className="grid grid-cols-2 gap-3">
-            {(['PATIENT', 'CAREGIVER'] as UserPersona[]).map((p) => (
-              <button
-                key={p}
-                onClick={() => { setPersona(p); }}
-                className={[
-                  'h-[56px] rounded-2xl text-sm font-semibold border-2 transition-all duration-150',
-                  persona === p
-                    ? 'border-primary bg-primary text-white shadow-sm'
-                    : 'border-slate-200 bg-white text-slate-600',
-                ].join(' ')}
-              >
-                {p === 'PATIENT' ? t.patient : t.caregiver}
-              </button>
-            ))}
           </div>
         </div>
 

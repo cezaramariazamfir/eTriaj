@@ -4,7 +4,7 @@ import { AppShell } from './components/layout/AppShell';
 import { InitPage } from './pages/InitPage';
 import { TriagePage } from './pages/TriagePage';
 import { EmergencyPage } from './pages/EmergencyPage';
-import { FlagsPage } from './pages/FlagsPage';
+import { SymptomsPage } from './pages/SymptomsPage';
 
 export default function App() {
   return (
@@ -15,7 +15,7 @@ export default function App() {
             <Route path="/" element={<InitPage />} />
             <Route path="/triage" element={<TriagePage />} />
             <Route path="/emergency" element={<EmergencyPage />} />
-            <Route path="/flags" element={<FlagsPage />} />
+            <Route path="/symptoms" element={<SymptomsPage />} />
           </Routes>
         </AppShell>
       </TriageProvider>
