@@ -48,14 +48,10 @@ export interface UITranslations {
   goToHospital: string;
   // AppShell
   offlineBanner: string;
-  // ResultPage (obsolete placeholder)
-  level1Cleared: string;
-  module2Soon: string;
   // EmergencyPage — trigger info
   triggeredByLabel: string;
   contextFlagsLabel: string;
-  // FlagsPage / SymptomsPage — input
-  flagsStageAComplete: string;
+  // SymptomsPage — input
   symptomsTitle: string;
   symptomsSubtitle: string;
   symptomsPlaceholder: string;
@@ -124,11 +120,8 @@ export const UI: Record<Locale, UITranslations> = {
     esi2Body: 'The patient has a high-risk condition that requires urgent evaluation. Do not wait.',
     goToHospital: 'Go to hospital now',
     offlineBanner: 'No internet connection — Module 1 works offline',
-    level1Cleared: 'Level 1 cleared',
-    module2Soon: 'No immediate life threat detected. Module 2 coming soon.',
     triggeredByLabel: 'Triggered by',
     contextFlagsLabel: 'Risk flags collected',
-    flagsStageAComplete: 'No immediate life threat detected in Stage A.',
     symptomsTitle: 'Describe your symptoms',
     symptomsSubtitle: 'Write what you or the patient is experiencing, in your own words.',
     symptomsPlaceholder: 'e.g. chest pain since this morning, shortness of breath, slight dizziness...',
@@ -142,7 +135,7 @@ export const UI: Record<Locale, UITranslations> = {
     resultTokensLabel: 'Detected symptoms',
     resultNoTokens: 'No specific symptoms matched the knowledge base.',
     resultAlertsLabel: 'Risk alerts',
-    resultFlagsLabel: 'Risk factors collected (Stage A)',
+    resultFlagsLabel: 'Risk factors collected',
     resultFlagAge: 'Age',
     resultFlagSex: 'Biological sex',
     resultFlagPain: 'Pain level',
@@ -199,11 +192,8 @@ export const UI: Record<Locale, UITranslations> = {
     esi2Body: 'Pacientul are o condiție cu risc ridicat care necesită evaluare urgentă. Nu așteptați.',
     goToHospital: 'Mergeți la spital acum',
     offlineBanner: 'Fără conexiune — Modulul 1 funcționează offline',
-    level1Cleared: 'Nivelul 1 exclus',
-    module2Soon: 'Nicio amenințare imediată detectată. Modulul 2 în curând.',
     triggeredByLabel: 'Declanșat de',
     contextFlagsLabel: 'Flag-uri de risc colectate',
-    flagsStageAComplete: 'Nicio amenințare vitală imediată detectată în Etapa A.',
     symptomsTitle: 'Descrieți simptomele',
     symptomsSubtitle: 'Scrieți ce experimentați dumneavoastră sau pacientul, cu propriile cuvinte.',
     symptomsPlaceholder: 'ex. durere în piept de dimineață, dificultăți de respirație, amețeală ușoară...',
@@ -217,7 +207,7 @@ export const UI: Record<Locale, UITranslations> = {
     resultTokensLabel: 'Simptome detectate',
     resultNoTokens: 'Niciun simptom specific detectat în baza de cunoștințe.',
     resultAlertsLabel: 'Alerte de risc',
-    resultFlagsLabel: 'Factori de risc colectați (Etapa A)',
+    resultFlagsLabel: 'Factori de risc colectați',
     resultFlagAge: 'Vârstă',
     resultFlagSex: 'Sex biologic',
     resultFlagPain: 'Nivel durere',
