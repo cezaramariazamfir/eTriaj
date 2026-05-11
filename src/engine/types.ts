@@ -1,4 +1,3 @@
-export type UserPersona = 'PATIENT' | 'CAREGIVER';
 export type TriageAnswer = 'YES' | 'NO';
 export type TriageAnswerValue = 'YES' | 'NO' | 'M' | 'F' | number;
 export type ESILevel = 1 | 2 | 3 | 4 | 5;
@@ -32,7 +31,6 @@ export interface TriageFlags {
 export interface TriageSession {
   sessionId: string;
   patientAge: number;
-  persona: UserPersona;
   answers: Record<string, TriageAnswerValue>;
   flags: TriageFlags;
   currentModuleId: string;

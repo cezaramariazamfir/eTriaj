@@ -1,4 +1,4 @@
-import type { TriageSession, UserPersona, TriageFlags, TriageAnswerValue } from './types';
+import type { TriageSession, TriageFlags, TriageAnswerValue } from './types';
 import type { ITriageModule, ModuleResult } from './moduleInterface';
 import { Level1Module } from './modules/level1/manager';
 import { Level2Module } from './modules/level2/manager';
@@ -28,11 +28,10 @@ function createInitialFlags(patientAge: number): TriageFlags {
   };
 }
 
-function createSession(patientAge: number, persona: UserPersona): TriageSession {
+function createSession(patientAge: number): TriageSession {
   return {
     sessionId: generateId(),
     patientAge,
-    persona,
     answers: {},
     flags: createInitialFlags(patientAge),
     currentModuleId: 'level1',

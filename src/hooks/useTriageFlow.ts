@@ -19,7 +19,7 @@ const initialState: State = { session: null, result: null };
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'START': {
-      const session = Orchestrator.createSession(action.patientAge, 'PATIENT');
+      const session = Orchestrator.createSession(action.patientAge);
       return { session, result: null };
     }
     case 'ANSWER': {
