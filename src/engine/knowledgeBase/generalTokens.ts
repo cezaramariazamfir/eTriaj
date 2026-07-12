@@ -103,6 +103,20 @@ export const GENERAL_TOKENS: TokenEntry[] = [
     ],
   },
 
+  {
+    id: 'SYM_SKIN_INFECTION',
+    description_ro: 'Abces, furuncul, zonă roșie/umflată',
+    description_en: 'Abscess, furuncle, erythema and swelling',
+    is_critical: false,
+    base_resources: 2,
+    resource_types: ['procedure', 'abx'],
+    context_modifiers: [
+      { condition: 'IS_IMMUNO',       action: 'UPGRADE_ESI_2',  reason: { ro: 'Imunocompromis + infecție cutanată — risc fasciită necrozantă, sepsis', en: 'Immunocompromised + skin infection — necrotizing fasciitis, sepsis risk' } },
+      { condition: 'AGE_LT_28_DAYS', action: 'UPGRADE_ESI_2',  reason: { ro: 'Nou-născut — orice infecție cutanată poate fi sepsis', en: 'Neonate — any skin infection may indicate sepsis' } },
+      { condition: 'AGE_GT_65',       action: 'FLAG_HIGH_RISK', reason: { ro: 'Vârstnic — răspuns inflamator atenuat, sepsis subclinic posibil', en: 'Elderly — attenuated inflammatory response, subclinical sepsis possible' } },
+    ],
+  },
+
   // ── ESI 4 default (1 distinct resource type) ─────────────────────────────
 
   {
@@ -199,20 +213,6 @@ export const GENERAL_TOKENS: TokenEntry[] = [
     context_modifiers: [
       { condition: 'IS_OBSTETRIC_RISK', action: 'UPGRADE_ESI_2', reason: { ro: 'Postpartum + durere pelvină — risc endometrită, sepsis', en: 'Postpartum + pelvic pain — endometritis, sepsis risk' } },
       { condition: 'PAIN_ALERT',        action: 'UPGRADE_ESI_2', reason: { ro: 'Durere pelvină severă — torsiune ovariană, sarcină ectopică', en: 'Severe pelvic pain — ovarian torsion, ectopic pregnancy' } },
-    ],
-  },
-
-  {
-    id: 'SYM_SKIN_INFECTION',
-    description_ro: 'Abces, furuncul, zonă roșie/umflată',
-    description_en: 'Abscess, furuncle, erythema and swelling',
-    is_critical: false,
-    base_resources: 1,
-    resource_types: ['procedure', 'abx'],
-    context_modifiers: [
-      { condition: 'IS_IMMUNO',       action: 'UPGRADE_ESI_2',  reason: { ro: 'Imunocompromis + infecție cutanată — risc fasciită necrozantă, sepsis', en: 'Immunocompromised + skin infection — necrotizing fasciitis, sepsis risk' } },
-      { condition: 'AGE_LT_28_DAYS', action: 'UPGRADE_ESI_2',  reason: { ro: 'Nou-născut — orice infecție cutanată poate fi sepsis', en: 'Neonate — any skin infection may indicate sepsis' } },
-      { condition: 'AGE_GT_65',       action: 'FLAG_HIGH_RISK', reason: { ro: 'Vârstnic — răspuns inflamator atenuat, sepsis subclinic posibil', en: 'Elderly — attenuated inflammatory response, subclinical sepsis possible' } },
     ],
   },
 

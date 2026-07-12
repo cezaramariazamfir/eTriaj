@@ -86,7 +86,7 @@ export const UI: Record<Locale, UITranslations> = {
     patientAge: 'Patient age',
     agePlaceholder: 'Enter age',
     ageUnitYears: 'years',
-    ageUnitMonths: 'months',
+    ageUnitMonths: 'days',
     startTriage: 'Start triage',
     disclaimer:
       'This tool does not replace professional medical advice. Always call emergency services in a life-threatening situation.',
